@@ -21,11 +21,9 @@ class Atm:
     elif user_input == '2':
       self.change_pin()
     elif user_input == '3':
-      #check balance
-      pass
+      self.check_balance()
     elif user_input == '4':
-      #withdraw balance
-      pass
+      self.withdraw_balance()
     else:
       exit()    
     
@@ -48,5 +46,29 @@ class Atm:
     else:
       print("Existing pin didn't match")
       self.menu()    
+  
+  def check_balance(self):
+    user_input = input("Enter your pin:")
+    if user_input == self.pin:
+      print("Current Balnce:",self.balance)
+      self.menu()
+    else:
+      print("Your pin is incorrect")
+      
+  def withdraw_balance(self):
+    user_input = input("Enter your pin:")
+    if user_input == self.pin:
+      withdraw_balance = int(input("How much you wanna withdraw:"))
+      if withdraw_balance <= self.balance:
+        self.balance= self.balance - withdraw_balance
+        print("Withdraw successful,Current Balance:",self.balance)
+      else:
+        print("Withdraw amount is higher than current balance")
+    else:
+      print("Wrong Pin")  
+      self.menu()
+          
+  def exit(self):
+    print("Exited successfully")
   
 obj = Atm()
